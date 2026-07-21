@@ -4,6 +4,7 @@ import { Pencil, Trash2 } from 'lucide-react'
 import type { Pedido } from '@/lib/types'
 import { fmt, fmtDate } from '@/lib/utils'
 import { StatusBadge } from './StatusBadge'
+import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 
 interface OrderTableProps {
@@ -51,7 +52,10 @@ export function OrderTable({ pedidos, onEdit, onDelete }: OrderTableProps) {
                 <StatusBadge status={p.status} />
               </td>
               <td className="py-3 pr-4">
-                <div className="font-sans text-sm font-medium text-ink">{p.cliente}</div>
+                <div className="flex items-center gap-2">
+                  <div className="font-sans text-sm font-medium text-ink">{p.cliente}</div>
+                  {p.origem === 'site' && <Badge variant="basil">Site</Badge>}
+                </div>
                 <div className="font-sans text-[10px] text-ink/40 mt-0.5">{p.telefone}</div>
               </td>
               <td className="py-3 pr-4">

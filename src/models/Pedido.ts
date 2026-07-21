@@ -18,6 +18,9 @@ export interface IPedido extends Document<string> {
   status: PedidoStatus
   data: string
   observacoes?: string
+  // Canal de origem: criado pela Gestora aqui no admin, ou pelo cliente
+  // direto no site público (casa-marco).
+  origem?: 'admin' | 'site'
 }
 
 const ItemPedidoSchema = new Schema<IItemPedido>(
@@ -43,6 +46,7 @@ const PedidoSchema = new Schema<IPedido>({
   },
   data: { type: String, required: true, default: () => new Date().toISOString() },
   observacoes: { type: String, trim: true },
+  origem: { type: String, enum: ['admin', 'site'], default: 'admin' },
 })
 
 withIdTransform(PedidoSchema)

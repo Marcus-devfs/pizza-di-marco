@@ -16,6 +16,7 @@ export interface Pedido {
   status: PedidoStatus
   data: string
   observacoes?: string
+  origem?: 'admin' | 'site'
 }
 
 export type IngredienteCategoria = 'massa' | 'molho' | 'queijo' | 'proteina' | 'embalagem' | 'outros'
