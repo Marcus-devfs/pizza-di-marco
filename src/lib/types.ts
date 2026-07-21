@@ -17,6 +17,7 @@ export interface Pedido {
   data: string
   observacoes?: string
   origem?: 'admin' | 'site'
+  dataRetirada?: string
 }
 
 export type IngredienteCategoria = 'massa' | 'molho' | 'queijo' | 'proteina' | 'embalagem' | 'outros'

@@ -30,6 +30,7 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
   const [telefone, setTelefone] = useState(initial?.telefone ?? '')
   const [status, setStatus] = useState<PedidoStatus>(initial?.status ?? 'pendente')
   const [observacoes, setObservacoes] = useState(initial?.observacoes ?? '')
+  const [dataRetirada, setDataRetirada] = useState(initial?.dataRetirada ?? '')
   const [itens, setItens] = useState<ItemPedido[]>(initial?.itens ?? [])
 
   const SABOR_OPTIONS = produtos.map((p) => ({ value: p.id, label: `${p.nome} — ${fmt(p.precoVenda)}` }))
@@ -79,7 +80,7 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!cliente.trim() || itens.length === 0) return
-    onSubmit({ cliente, telefone, status, observacoes, itens, total })
+    onSubmit({ cliente, telefone, status, observacoes, dataRetirada, itens, total })
   }
 
   useEffect(() => {
@@ -88,6 +89,7 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
       setTelefone(initial.telefone)
       setStatus(initial.status)
       setObservacoes(initial.observacoes ?? '')
+      setDataRetirada(initial.dataRetirada ?? '')
       setItens(initial.itens)
     }
   }, [initial])
@@ -162,12 +164,20 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
         </button>
       </div>
 
-      <Select
-        label="Status"
-        options={STATUS_OPTIONS}
-        value={status}
-        onChange={(e) => setStatus(e.target.value as PedidoStatus)}
-      />
+      <div className="grid grid-cols-2 gap-3">
+        <Select
+          label="Status"
+          options={STATUS_OPTIONS}
+          value={status}
+          onChange={(e) => setStatus(e.target.value as PedidoStatus)}
+        />
+        <Input
+          label="Data de retirada/entrega"
+          type="date"
+          value={dataRetirada}
+          onChange={(e) => setDataRetirada(e.target.value)}
+        />
+      </div>
 
       <div className="flex flex-col gap-1">
         <label className="font-sans text-[10px] tracking-[0.18em] uppercase font-semibold text-ink/50">

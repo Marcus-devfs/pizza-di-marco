@@ -30,7 +30,7 @@ export function OrderTable({ pedidos, onEdit, onDelete }: OrderTableProps) {
       <table className="w-full">
         <thead>
           <tr className="border-b border-ink/10">
-            {['Status', 'Cliente', 'Itens', 'Total', 'Data', ''].map((h) => (
+            {['Status', 'Cliente', 'Itens', 'Total', 'Retirada', 'Data', ''].map((h) => (
               <th
                 key={h}
                 className="text-left font-sans text-[9px] tracking-[0.28em] uppercase font-semibold text-ink/40 pb-3 pr-4 first:pl-5 last:pr-5"
@@ -69,6 +69,11 @@ export function OrderTable({ pedidos, onEdit, onDelete }: OrderTableProps) {
               </td>
               <td className="py-3 pr-4">
                 <span className="font-display text-base text-terracotta-dark">{fmt(p.total)}</span>
+              </td>
+              <td className="py-3 pr-4">
+                <span className="font-sans text-xs text-ink/70">
+                  {p.dataRetirada ? fmtDate(p.dataRetirada) : '—'}
+                </span>
               </td>
               <td className="py-3 pr-4">
                 <span className="font-sans text-xs text-ink/50">{fmtDate(p.data)}</span>
