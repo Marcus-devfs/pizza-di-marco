@@ -1,0 +1,120 @@
+[
+  {
+    "id": "p-001",
+    "cliente": "Ana Lima",
+    "telefone": "11987654321",
+    "itens": [
+      { "saborId": "marg", "saborNome": "Margherita Gourmet", "quantidade": 2, "precoUnitario": 69 }
+    ],
+    "total": 138,
+    "status": "entregue",
+    "data": "2026-05-02T19:30:00.000Z",
+    "observacoes": "Bloco A, apt 42"
+  },
+  {
+    "id": "p-002",
+    "cliente": "Carlos Mendes",
+    "telefone": "11976543210",
+    "itens": [
+      { "saborId": "cal", "saborNome": "Calabresa Defumada", "quantidade": 1, "precoUnitario": 69 },
+      { "saborId": "pres", "saborNome": "Presunto Cru", "quantidade": 1, "precoUnitario": 79 }
+    ],
+    "total": 148,
+    "status": "entregue",
+    "data": "2026-05-02T20:00:00.000Z"
+  },
+  {
+    "id": "p-003",
+    "cliente": "Fernanda Costa",
+    "telefone": "11965432109",
+    "itens": [
+      { "saborId": "casa", "saborNome": "Pizza da Casa", "quantidade": 1, "precoUnitario": 79 },
+      { "saborId": "fra", "saborNome": "Frango com Catupiry®", "quantidade": 1, "precoUnitario": 69 }
+    ],
+    "total": 148,
+    "status": "entregue",
+    "data": "2026-05-03T19:15:00.000Z"
+  },
+  {
+    "id": "p-004",
+    "cliente": "Roberto Alves",
+    "telefone": "11954321098",
+    "itens": [
+      { "saborId": "marg", "saborNome": "Margherita Gourmet", "quantidade": 1, "precoUnitario": 69 }
+    ],
+    "total": 69,
+    "status": "entregue",
+    "data": "2026-05-03T20:30:00.000Z"
+  },
+  {
+    "id": "p-005",
+    "cliente": "Beatriz Souza",
+    "telefone": "11943210987",
+    "itens": [
+      { "saborId": "pres", "saborNome": "Presunto Cru", "quantidade": 2, "precoUnitario": 79 }
+    ],
+    "total": 158,
+    "status": "entregue",
+    "data": "2026-05-09T19:00:00.000Z",
+    "observacoes": "Sem cebola"
+  },
+  {
+    "id": "p-006",
+    "cliente": "Diego Ferreira",
+    "telefone": "11932109876",
+    "itens": [
+      { "saborId": "cal", "saborNome": "Calabresa Defumada", "quantidade": 1, "precoUnitario": 69 },
+      { "saborId": "casa", "saborNome": "Pizza da Casa", "quantidade": 1, "precoUnitario": 79 }
+    ],
+    "total": 148,
+    "status": "entregue",
+    "data": "2026-05-09T19:45:00.000Z"
+  },
+  {
+    "id": "p-007",
+    "cliente": "Luiza Martins",
+    "telefone": "11921098765",
+    "itens": [
+      { "saborId": "fra", "saborNome": "Frango com Catupiry®", "quantidade": 2, "precoUnitario": 69 }
+    ],
+    "total": 138,
+    "status": "entregue",
+    "data": "2026-05-10T19:00:00.000Z"
+  },
+  {
+    "id": "p-008",
+    "cliente": "Mariana Santos",
+    "telefone": "11910987654",
+    "itens": [
+      { "saborId": "marg", "saborNome": "Margherita Gourmet", "quantidade": 1, "precoUnitario": 69 },
+      { "saborId": "pres", "saborNome": "Presunto Cru", "quantidade": 1, "precoUnitario": 79 }
+    ],
+    "total": 148,
+    "status": "confirmado",
+    "data": "2026-05-13T15:00:00.000Z",
+    "observacoes": "Entregar no bloco B"
+  },
+  {
+    "id": "p-009",
+    "cliente": "Pedro Oliveira",
+    "telefone": "11999887766",
+    "itens": [
+      { "saborId": "casa", "saborNome": "Pizza da Casa", "quantidade": 2, "precoUnitario": 79 }
+    ],
+    "total": 158,
+    "status": "pendente",
+    "data": "2026-05-13T15:30:00.000Z"
+  },
+  {
+    "id": "p-010",
+    "cliente": "Julia Ramos",
+    "telefone": "11988776655",
+    "itens": [
+      { "saborId": "cal", "saborNome": "Calabresa Defumada", "quantidade": 1, "precoUnitario": 69 }
+    ],
+    "total": 69,
+    "status": "cancelado",
+    "data": "2026-05-10T14:00:00.000Z",
+    "observacoes": "Cancelou por indisponibilidade"
+  }
+]

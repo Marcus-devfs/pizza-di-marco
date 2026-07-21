@@ -1,0 +1,58 @@
+[
+  {
+    "id": "g-001",
+    "descricao": "Farinha 00 - 10kg",
+    "categoria": "ingredientes",
+    "valor": 125.0,
+    "data": "2026-05-01T10:00:00.000Z"
+  },
+  {
+    "id": "g-002",
+    "descricao": "Gás de cozinha (2 botijões)",
+    "categoria": "gas",
+    "valor": 180.0,
+    "data": "2026-05-02T14:00:00.000Z"
+  },
+  {
+    "id": "g-003",
+    "descricao": "Mozzarella de Búfala - 3kg",
+    "categoria": "ingredientes",
+    "valor": 204.0,
+    "data": "2026-05-05T09:00:00.000Z"
+  },
+  {
+    "id": "g-004",
+    "descricao": "Caixas pizza 35cm (50 unid)",
+    "categoria": "embalagens",
+    "valor": 190.0,
+    "data": "2026-05-06T11:00:00.000Z"
+  },
+  {
+    "id": "g-005",
+    "descricao": "Presunto Cru importado - 2kg",
+    "categoria": "ingredientes",
+    "valor": 240.0,
+    "data": "2026-05-08T10:00:00.000Z"
+  },
+  {
+    "id": "g-006",
+    "descricao": "Molho San Marzano - 6 latas",
+    "categoria": "ingredientes",
+    "valor": 108.0,
+    "data": "2026-05-08T10:30:00.000Z"
+  },
+  {
+    "id": "g-007",
+    "descricao": "Limpeza e manutenção do forno",
+    "categoria": "manutencao",
+    "valor": 80.0,
+    "data": "2026-05-09T16:00:00.000Z"
+  },
+  {
+    "id": "g-008",
+    "descricao": "Frango e Catupiry - reposição",
+    "categoria": "ingredientes",
+    "valor": 68.0,
+    "data": "2026-05-10T09:00:00.000Z"
+  }
+]

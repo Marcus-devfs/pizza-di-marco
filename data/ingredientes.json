@@ -1,0 +1,110 @@
+[
+  {
+    "id": "i-001",
+    "nome": "Farinha 00",
+    "unidade": "kg",
+    "custoPorUnidade": 12.5,
+    "estoque": 8,
+    "estoqueMinimo": 5,
+    "categoria": "massa"
+  },
+  {
+    "id": "i-002",
+    "nome": "Molho San Marzano",
+    "unidade": "lata",
+    "custoPorUnidade": 18.0,
+    "estoque": 6,
+    "estoqueMinimo": 3,
+    "categoria": "molho"
+  },
+  {
+    "id": "i-003",
+    "nome": "Mozzarella Fior di Latte",
+    "unidade": "kg",
+    "custoPorUnidade": 42.0,
+    "estoque": 3,
+    "estoqueMinimo": 2,
+    "categoria": "queijo"
+  },
+  {
+    "id": "i-004",
+    "nome": "Mozzarella de Búfala",
+    "unidade": "kg",
+    "custoPorUnidade": 68.0,
+    "estoque": 1,
+    "estoqueMinimo": 1,
+    "categoria": "queijo"
+  },
+  {
+    "id": "i-005",
+    "nome": "Calabresa Defumada",
+    "unidade": "kg",
+    "custoPorUnidade": 38.0,
+    "estoque": 2,
+    "estoqueMinimo": 1,
+    "categoria": "proteina"
+  },
+  {
+    "id": "i-006",
+    "nome": "Presunto Cru",
+    "unidade": "kg",
+    "custoPorUnidade": 120.0,
+    "estoque": 1,
+    "estoqueMinimo": 0.5,
+    "categoria": "proteina"
+  },
+  {
+    "id": "i-007",
+    "nome": "Frango Desfiado",
+    "unidade": "kg",
+    "custoPorUnidade": 24.0,
+    "estoque": 1.5,
+    "estoqueMinimo": 0.5,
+    "categoria": "proteina"
+  },
+  {
+    "id": "i-008",
+    "nome": "Catupiry Original",
+    "unidade": "kg",
+    "custoPorUnidade": 32.0,
+    "estoque": 1,
+    "estoqueMinimo": 0.5,
+    "categoria": "queijo"
+  },
+  {
+    "id": "i-009",
+    "nome": "Ricota Fresca",
+    "unidade": "kg",
+    "custoPorUnidade": 28.0,
+    "estoque": 0.8,
+    "estoqueMinimo": 0.5,
+    "categoria": "queijo"
+  },
+  {
+    "id": "i-010",
+    "nome": "Caixa Pizza 35cm",
+    "unidade": "unid",
+    "custoPorUnidade": 3.8,
+    "estoque": 30,
+    "estoqueMinimo": 20,
+    "categoria": "embalagem"
+  },
+  {
+    "id": "i-011",
+    "nome": "Manjericão Fresco",
+    "unidade": "maço",
+    "custoPorUnidade": 8.0,
+    "estoque": 1,
+    "estoqueMinimo": 1,
+    "categoria": "outros"
+  },
+  {
+    "id": "i-012",
+    "nome": "Azeite Extra Virgem",
+    "unidade": "L",
+    "custoPorUnidade": 45.0,
+    "estoque": 0.8,
+    "estoqueMinimo": 0.5,
+    "categoria": "outros"
+  }
+]
