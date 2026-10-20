@@ -11,6 +11,8 @@ import { Button } from '@/components/ui/Button'
 
 interface FornadaFormProps {
   initial?: Fornada
+  // Tamanho sugerido numa fornada nova (o da fornada mais recente).
+  tamanhoPadrao?: number
   produtos: Produto[]
   onSubmit: (data: FornadaInput) => void
   loading?: boolean
@@ -37,8 +39,9 @@ function localParaIso(local: string) {
   return local ? new Date(`${local}:00-03:00`).toISOString() : ''
 }
 
-export function FornadaForm({ initial, produtos, onSubmit, loading, error }: FornadaFormProps) {
+export function FornadaForm({ initial, tamanhoPadrao = 25, produtos, onSubmit, loading, error }: FornadaFormProps) {
   const [data, setData] = useState(initial?.data ?? '')
+  const [tamanhoCm, setTamanhoCm] = useState(initial?.tamanhoCm ?? tamanhoPadrao)
   const [horarioInicio, setHorarioInicio] = useState(initial?.horarioInicio ?? '19:00')
   const [horarioFim, setHorarioFim] = useState(initial?.horarioFim ?? '21:00')
   const [capacidade, setCapacidade] = useState(initial?.capacidade ?? 10)
@@ -74,6 +77,7 @@ export function FornadaForm({ initial, produtos, onSubmit, loading, error }: For
       horarioInicio,
       horarioFim,
       capacidade,
+      tamanhoCm,
       sabores,
       especial: sabores.includes(especial) ? especial : '',
       encerramentoReservas: localParaIso(encerramento),
@@ -85,14 +89,25 @@ export function FornadaForm({ initial, produtos, onSubmit, loading, error }: For
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="grid grid-cols-2 gap-3">
-        <Input label="Data da fornada" type="date" value={data} onChange={(e) => setData(e.target.value)} required />
+        <div className="col-span-2">
+          <Input label="Data da fornada" type="date" value={data} onChange={(e) => setData(e.target.value)} required />
+        </div>
         <Input
-          label="Capacidade (pizzas)"
+          label="Quantas pizzas"
           type="number"
           min={1}
           max={200}
           value={capacidade}
           onChange={(e) => setCapacidade(Number(e.target.value))}
+          required
+        />
+        <Input
+          label="Tamanho (cm)"
+          type="number"
+          min={15}
+          max={50}
+          value={tamanhoCm}
+          onChange={(e) => setTamanhoCm(Number(e.target.value))}
           required
         />
         <Input

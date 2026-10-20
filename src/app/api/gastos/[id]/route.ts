@@ -6,7 +6,10 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   await dbConnect()
   const { id } = await params
   const body = await request.json()
-  const gasto = await Gasto.findByIdAndUpdate(id, body, { new: true, runValidators: true })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { fornada, ...resto } = body
+  const update = fornada === '' ? { ...resto, $unset: { fornada: 1 } } : body
+  const gasto = await Gasto.findByIdAndUpdate(id, update, { new: true, runValidators: true })
   if (!gasto) return NextResponse.json({ error: 'Not found' }, { status: 404 })
   return NextResponse.json(gasto)
 }

@@ -5,11 +5,11 @@ import Pedido from '@/models/Pedido'
 import Product from '@/models/Product'
 import { corsHeaders, excedeuLimite, ipDaRequisicao } from '@/lib/publicApi'
 import { horariosFornada, liberarCapacidade, reservarCapacidade, reservasAbertas } from '@/lib/fornada'
+import { RECEBIMENTOS } from '@/lib/types'
 
 export const dynamic = 'force-dynamic'
 
 const METODOS = 'POST, OPTIONS'
-const RECEBIMENTOS = ['Entrega no apartamento', 'Retirada com o Marcus']
 const MAX_PIZZAS_POR_PEDIDO = 20
 
 interface ReservaInput {
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
   if (!nome) return erro('Informe seu nome.', 400)
   if (digitos.length < 10 || digitos.length > 13) return erro('Informe o WhatsApp com DDD.', 400)
   if (!apto) return erro('Informe a torre e o apartamento.', 400)
-  if (!RECEBIMENTOS.includes(recebimento)) return erro('Forma de recebimento inválida.', 400)
+  if (!(RECEBIMENTOS as readonly string[]).includes(recebimento)) return erro('Forma de recebimento inválida.', 400)
 
   const quantidades = new Map<string, number>()
   for (const item of Array.isArray(body.itens) ? body.itens : []) {

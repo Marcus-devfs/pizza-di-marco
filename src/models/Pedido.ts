@@ -1,6 +1,6 @@
 import { Schema, model, models, Model, Document } from 'mongoose'
 import { genId, withIdTransform } from '@/lib/mongooseHelpers'
-import type { PedidoStatus } from '@/lib/types'
+import { FORMAS_PAGAMENTO, type FormaPagamento, type PedidoStatus } from '@/lib/types'
 
 export interface IItemPedido {
   saborId: string
@@ -30,6 +30,8 @@ export interface IPedido extends Document<string> {
   horarioEntrega?: string
   endereco?: string
   recebimento?: string
+  formaPagamento?: FormaPagamento
+  pago?: boolean
 }
 
 const ItemPedidoSchema = new Schema<IItemPedido>(
@@ -61,6 +63,8 @@ const PedidoSchema = new Schema<IPedido>({
   horarioEntrega: { type: String, trim: true },
   endereco: { type: String, trim: true },
   recebimento: { type: String, trim: true },
+  formaPagamento: { type: String, enum: [...FORMAS_PAGAMENTO, ''] },
+  pago: { type: Boolean, default: false },
 })
 
 withIdTransform(PedidoSchema)

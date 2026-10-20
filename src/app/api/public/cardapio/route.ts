@@ -26,6 +26,7 @@ export type FornadaPublica = {
   capacidade: number
   reservadas: number | null
   aberta: boolean
+  tamanhoCm: number
 }
 
 export type CardapioPublico = {
@@ -88,6 +89,7 @@ async function buscarCardapioDaSemana(): Promise<Omit<CardapioPublico, 'atualiza
       reservadas: fornada.reservadas,
       // Lotada continua `aberta`: o site mostra "Esgotada" a partir das vagas.
       aberta: reservasAbertas(fornada),
+      tamanhoCm: fornada.tamanhoCm ?? 25,
     },
     sabores,
   }

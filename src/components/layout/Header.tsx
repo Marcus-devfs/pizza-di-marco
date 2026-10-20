@@ -5,16 +5,11 @@ import { usePathname } from 'next/navigation'
 import { useUIStore } from '@/store/uiStore'
 
 const PAGE_TITLES: Record<string, string> = {
-  '/dashboard': 'Dashboard',
-  '/pedidos': 'Pedidos',
+  '/dashboard': 'Início',
+  '/pedidos': 'Reservas',
   '/fornadas': 'Fornadas',
   '/sabores': 'Sabores',
-  '/producao': 'Produção',
-  '/canais': 'Canais de Venda',
-  '/ingredientes': 'Ingredientes',
-  '/gastos': 'Gastos',
-  '/financeiro': 'Financeiro',
-  '/faturamento': 'Faturamento',
+  '/caixa': 'Caixa',
 }
 
 export function Header() {

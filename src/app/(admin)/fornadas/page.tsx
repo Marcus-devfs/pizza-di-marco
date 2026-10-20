@@ -109,7 +109,7 @@ export default function FornadasPage() {
                   <div>
                     <div className="font-sans text-lg font-semibold text-ink">{rotulo(f.data)}</div>
                     <div className="font-sans text-xs text-ink/50 mt-0.5">
-                      Entregas das {f.horarioInicio} às {f.horarioFim}
+                      Entregas das {f.horarioInicio} às {f.horarioFim} · pizzas de {f.tamanhoCm ?? 25} cm
                     </div>
                   </div>
                   <Badge variant={STATUS_VARIANT[f.status]}>{f.status}</Badge>
@@ -163,6 +163,7 @@ export default function FornadasPage() {
         <FornadaForm
           key={editing?.id ?? 'nova'}
           initial={editing}
+          tamanhoPadrao={fornadas[0]?.tamanhoCm ?? 25}
           produtos={produtosAtivos}
           onSubmit={handleSubmit}
           loading={create.isPending || update.isPending}

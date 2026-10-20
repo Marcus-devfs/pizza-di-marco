@@ -1,36 +1,25 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import { COOKIE_SESSAO, credenciaisConfiguradas, sessaoValida } from '@/lib/sessao'
 
-function iguais(a: string, b: string) {
-  let diferenca = a.length ^ b.length
-  for (let i = 0; i < Math.max(a.length, b.length); i++) {
-    diferenca |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0)
+const ROTAS_LIVRES = ['/login', '/api/auth/login']
+
+// Todo o admin (telas e APIs internas) exige login. Sem as credenciais
+// configuradas, o acesso fica bloqueado em vez de aberto.
+export async function middleware(req: NextRequest) {
+  const { pathname, search } = req.nextUrl
+
+  if (!credenciaisConfiguradas()) {
+    return new NextResponse('Admin bloqueado: defina ADMIN_USER e ADMIN_PASSWORD.', { status: 503 })
   }
-  return diferenca === 0
-}
+  if (ROTAS_LIVRES.includes(pathname)) return NextResponse.next()
+  if (await sessaoValida(req.cookies.get(COOKIE_SESSAO)?.value)) return NextResponse.next()
 
-// Todo o admin (telas e APIs internas) exige a senha de ADMIN_PASSWORD.
-// Sem a variável configurada, o acesso fica bloqueado em vez de aberto.
-export function middleware(req: NextRequest) {
-  const senha = process.env.ADMIN_PASSWORD
-  if (!senha) {
-    return new NextResponse('Admin bloqueado: defina a variável ADMIN_PASSWORD.', { status: 503 })
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.json({ error: 'Faça login novamente.' }, { status: 401 })
   }
-
-  const auth = req.headers.get('authorization')
-  if (auth?.startsWith('Basic ')) {
-    try {
-      const credenciais = atob(auth.slice(6))
-      const informada = credenciais.slice(credenciais.indexOf(':') + 1)
-      if (iguais(informada, senha)) return NextResponse.next()
-    } catch {
-      // credencial malformada: cai no 401
-    }
-  }
-
-  return new NextResponse('Autenticação necessária.', {
-    status: 401,
-    headers: { 'WWW-Authenticate': 'Basic realm="Casa Marco Admin", charset="UTF-8"' },
-  })
+  const login = new URL('/login', req.url)
+  if (pathname !== '/') login.searchParams.set('de', pathname + search)
+  return NextResponse.redirect(login)
 }
 
 export const config = {

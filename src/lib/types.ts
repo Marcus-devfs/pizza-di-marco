@@ -1,5 +1,10 @@
 export type PedidoStatus = 'pendente' | 'confirmado' | 'em_preparo' | 'entregue' | 'cancelado'
 
+export const FORMAS_PAGAMENTO = ['Pix', 'Dinheiro', 'Cartão de crédito', 'Cartão de débito'] as const
+export type FormaPagamento = (typeof FORMAS_PAGAMENTO)[number] | ''
+
+export const RECEBIMENTOS = ['Entrega no apartamento', 'Retirada com o Marcus'] as const
+
 export interface ItemPedido {
   saborId: string
   saborNome: string
@@ -22,6 +27,8 @@ export interface Pedido {
   horarioEntrega?: string
   endereco?: string
   recebimento?: string
+  formaPagamento?: FormaPagamento
+  pago?: boolean
 }
 
 export type StatusFornada = 'Aberta' | 'Encerrada' | 'Cancelada'
@@ -32,6 +39,7 @@ export interface Fornada {
   horarioInicio: string
   horarioFim: string
   capacidade: number
+  tamanhoCm: number
   reservadas: number
   sabores: string[]
   especial?: string
@@ -52,7 +60,14 @@ export interface Ingrediente {
   categoria: IngredienteCategoria
 }
 
-export type GastoCategoria = 'ingredientes' | 'embalagens' | 'gas' | 'equipamentos' | 'manutencao' | 'outros'
+export type GastoCategoria =
+  | 'massa'
+  | 'ingredientes'
+  | 'embalagens'
+  | 'gas'
+  | 'equipamentos'
+  | 'manutencao'
+  | 'outros'
 
 export interface Gasto {
   id: string
@@ -61,6 +76,8 @@ export interface Gasto {
   valor: number
   data: string
   observacoes?: string
+  formaPagamento?: FormaPagamento
+  fornada?: string
 }
 
 export interface DashboardStats {

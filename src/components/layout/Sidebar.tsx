@@ -2,34 +2,22 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  LayoutDashboard,
-  ClipboardList,
-  Pizza,
-  Flame,
-  Layers,
-  Truck,
-  Package,
-  Wallet,
-  Landmark,
-  BarChart3,
-  X,
-} from 'lucide-react'
+import { House, ClipboardList, Pizza, Flame, Wallet, LogOut, X } from 'lucide-react'
 import { Monogram } from './Monogram'
 import { useUIStore } from '@/store/uiStore'
 
 const NAV_ITEMS = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/pedidos', label: 'Pedidos', icon: ClipboardList },
+  { href: '/dashboard', label: 'Início', icon: House },
+  { href: '/pedidos', label: 'Reservas', icon: ClipboardList },
   { href: '/fornadas', label: 'Fornadas', icon: Flame },
   { href: '/sabores', label: 'Sabores', icon: Pizza },
-  { href: '/producao', label: 'Produção', icon: Layers },
-  { href: '/canais', label: 'Canais de Venda', icon: Truck },
-  { href: '/ingredientes', label: 'Ingredientes', icon: Package },
-  { href: '/gastos', label: 'Gastos', icon: Wallet },
-  { href: '/financeiro', label: 'Financeiro', icon: Landmark },
-  { href: '/faturamento', label: 'Faturamento', icon: BarChart3 },
+  { href: '/caixa', label: 'Caixa', icon: Wallet },
 ]
+
+async function sair() {
+  await fetch('/api/auth/logout', { method: 'POST' }).catch(() => {})
+  window.location.assign('/login')
+}
 
 export function Sidebar() {
   const pathname = usePathname()
@@ -93,10 +81,14 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="px-5 py-4 border-t border-cream/[0.08]">
-          <div className="font-sans text-[9px] text-cream/25 tracking-wide">
-            Casa Marco · Admin v1.0
-          </div>
+        <div className="px-3 py-4 border-t border-cream/[0.08]">
+          <button
+            onClick={sair}
+            className="w-full flex items-center gap-3 py-2.5 px-3 rounded-xl text-cream/45 hover:text-cream/90 hover:bg-cream/[0.06] transition-colors"
+          >
+            <LogOut size={15} />
+            <span className="font-sans text-xs font-medium tracking-wide">Sair</span>
+          </button>
         </div>
       </aside>
     </>

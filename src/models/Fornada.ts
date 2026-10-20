@@ -11,6 +11,8 @@ export interface IFornada extends Document<string> {
   horarioInicio: string
   horarioFim: string
   capacidade: number
+  // Diâmetro das pizzas desta fornada (depende da embalagem disponível).
+  tamanhoCm: number
   // Pizzas reservadas (pedidos não cancelados desta fornada). A reserva
   // pública incrementa de forma atômica; as telas do admin recalculam a
   // partir dos pedidos sempre que um pedido muda.
@@ -50,6 +52,12 @@ const FornadaSchema = new Schema<IFornada>(
       type: Number,
       required: [true, 'A capacidade da fornada é obrigatória'],
       min: [1, 'A capacidade deve ser de pelo menos 1 pizza'],
+    },
+    tamanhoCm: {
+      type: Number,
+      default: 25,
+      min: [15, 'Tamanho mínimo: 15 cm'],
+      max: [50, 'Tamanho máximo: 50 cm'],
     },
     reservadas: { type: Number, default: 0, min: 0 },
     sabores: { type: [{ type: String, ref: 'Product' }], default: [] },
