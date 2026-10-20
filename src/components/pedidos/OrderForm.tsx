@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
 import type { ItemPedido, Pedido, PedidoStatus } from '@/lib/types'
 import { useProdutos } from '@/hooks/useProdutos'
+import { useFornadas } from '@/hooks/useFornadas'
 import { fmt, STATUS_LABEL } from '@/lib/utils'
 import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
@@ -25,6 +26,7 @@ const STATUS_OPTIONS: { value: string; label: string }[] = [
 
 export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
   const { data: produtos = [] } = useProdutos('Ativo')
+  const { data: fornadas = [] } = useFornadas()
 
   const [cliente, setCliente] = useState(initial?.cliente ?? '')
   const [telefone, setTelefone] = useState(initial?.telefone ?? '')
@@ -32,6 +34,21 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
   const [observacoes, setObservacoes] = useState(initial?.observacoes ?? '')
   const [dataRetirada, setDataRetirada] = useState(initial?.dataRetirada ?? '')
   const [itens, setItens] = useState<ItemPedido[]>(initial?.itens ?? [])
+  const [fornada, setFornada] = useState(initial?.fornada ?? '')
+  const [endereco, setEndereco] = useState(initial?.endereco ?? '')
+
+  const FORNADA_OPTIONS = [
+    { value: '', label: 'Sem fornada' },
+    ...fornadas
+      .filter((f) => f.status === 'Aberta' || f.id === initial?.fornada)
+      .map((f) => ({ value: f.id, label: `${f.data.split('-').reverse().join('/')} · ${f.reservadas}/${f.capacidade} reservadas` })),
+  ]
+
+  function escolherFornada(id: string) {
+    setFornada(id)
+    const escolhida = fornadas.find((f) => f.id === id)
+    if (escolhida) setDataRetirada(escolhida.data)
+  }
 
   const SABOR_OPTIONS = produtos.map((p) => ({ value: p.id, label: `${p.nome} — ${fmt(p.precoVenda)}` }))
 
@@ -80,7 +97,7 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!cliente.trim() || itens.length === 0) return
-    onSubmit({ cliente, telefone, status, observacoes, dataRetirada, itens, total })
+    onSubmit({ cliente, telefone, status, observacoes, dataRetirada, itens, total, fornada, endereco })
   }
 
   useEffect(() => {
@@ -91,6 +108,8 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
       setObservacoes(initial.observacoes ?? '')
       setDataRetirada(initial.dataRetirada ?? '')
       setItens(initial.itens)
+      setFornada(initial.fornada ?? '')
+      setEndereco(initial.endereco ?? '')
     }
   }, [initial])
 
@@ -178,6 +197,27 @@ export function OrderForm({ initial, onSubmit, loading }: OrderFormProps) {
           onChange={(e) => setDataRetirada(e.target.value)}
         />
       </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <Select
+          label="Fornada"
+          options={FORNADA_OPTIONS}
+          value={fornada}
+          onChange={(e) => escolherFornada(e.target.value)}
+        />
+        <Input
+          label="Torre / apto"
+          value={endereco}
+          onChange={(e) => setEndereco(e.target.value)}
+          placeholder="Torre 2, apto 54"
+        />
+      </div>
+      {initial?.horarioEntrega && (
+        <p className="-mt-2 font-sans text-[11px] text-ink/50">
+          Horário escolhido: {initial.horarioEntrega}
+          {initial.recebimento ? ` · ${initial.recebimento}` : ''}
+        </p>
+      )}
 
       <div className="flex flex-col gap-1">
         <label className="font-sans text-[10px] tracking-[0.18em] uppercase font-semibold text-ink/50">

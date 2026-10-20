@@ -40,6 +40,7 @@ export default function SaboresPage() {
     precoVenda: number
     custoInsumos: number
     status: 'Ativo' | 'Inativo'
+    imagemUrl: string
   }) {
     if (editing) {
       await update.mutateAsync({ id: editing.id, ...data })

@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   ClipboardList,
   Pizza,
+  Flame,
   Layers,
   Truck,
   Package,
@@ -20,6 +21,7 @@ import { useUIStore } from '@/store/uiStore'
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/pedidos', label: 'Pedidos', icon: ClipboardList },
+  { href: '/fornadas', label: 'Fornadas', icon: Flame },
   { href: '/sabores', label: 'Sabores', icon: Pizza },
   { href: '/producao', label: 'Produção', icon: Layers },
   { href: '/canais', label: 'Canais de Venda', icon: Truck },

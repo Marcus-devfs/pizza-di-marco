@@ -14,6 +14,7 @@ interface SaborFormProps {
     precoVenda: number
     custoInsumos: number
     status: 'Ativo' | 'Inativo'
+    imagemUrl: string
   }) => void
   loading?: boolean
 }
@@ -24,6 +25,7 @@ export function SaborForm({ initial, onSubmit, loading }: SaborFormProps) {
   const [precoVenda, setPrecoVenda] = useState(initial?.precoVenda ?? 0)
   const [custoInsumos, setCustoInsumos] = useState(initial?.custoInsumos ?? 0)
   const [status, setStatus] = useState<'Ativo' | 'Inativo'>(initial?.status ?? 'Ativo')
+  const [imagemUrl, setImagemUrl] = useState(initial?.imagemUrl ?? '')
 
   useEffect(() => {
     if (initial) {
@@ -32,13 +34,14 @@ export function SaborForm({ initial, onSubmit, loading }: SaborFormProps) {
       setPrecoVenda(initial.precoVenda)
       setCustoInsumos(initial.custoInsumos)
       setStatus(initial.status)
+      setImagemUrl(initial.imagemUrl ?? '')
     }
   }, [initial])
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!nome.trim() || !descricaoGourmet.trim()) return
-    onSubmit({ nome, descricaoGourmet, precoVenda, custoInsumos, status })
+    onSubmit({ nome, descricaoGourmet, precoVenda, custoInsumos, status, imagemUrl: imagemUrl.trim() })
   }
 
   const margem = precoVenda - custoInsumos
@@ -83,6 +86,17 @@ export function SaborForm({ initial, onSubmit, loading }: SaborFormProps) {
           onChange={(e) => setCustoInsumos(Number(e.target.value))}
           required
         />
+      </div>
+      <div className="flex flex-col gap-1">
+        <Input
+          label="Foto no site (opcional)"
+          value={imagemUrl}
+          onChange={(e) => setImagemUrl(e.target.value)}
+          placeholder="https://... ou /assets/pizza-margherita.jpg"
+        />
+        <span className="font-sans text-[10px] text-ink/40">
+          Sem foto, o site usa a ilustração do sabor.
+        </span>
       </div>
       {initial && (
         <Select

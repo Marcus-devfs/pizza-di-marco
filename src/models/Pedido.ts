@@ -24,6 +24,12 @@ export interface IPedido extends Document<string> {
   // Data desejada pelo cliente para retirada/entrega (trabalhamos por
   // encomenda, então isso é diferente de `data`, que é quando o pedido foi feito).
   dataRetirada?: string
+  // Reserva de pizza fresca: fornada, horário escolhido (rótulo exibido no
+  // site, ex: "Sábado · 19h–20h"), torre/apto e forma de recebimento.
+  fornada?: string
+  horarioEntrega?: string
+  endereco?: string
+  recebimento?: string
 }
 
 const ItemPedidoSchema = new Schema<IItemPedido>(
@@ -51,6 +57,10 @@ const PedidoSchema = new Schema<IPedido>({
   observacoes: { type: String, trim: true },
   origem: { type: String, enum: ['admin', 'site'], default: 'admin' },
   dataRetirada: { type: String },
+  fornada: { type: String, ref: 'Fornada', index: true },
+  horarioEntrega: { type: String, trim: true },
+  endereco: { type: String, trim: true },
+  recebimento: { type: String, trim: true },
 })
 
 withIdTransform(PedidoSchema)

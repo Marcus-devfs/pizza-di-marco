@@ -18,6 +18,26 @@ export interface Pedido {
   observacoes?: string
   origem?: 'admin' | 'site'
   dataRetirada?: string
+  fornada?: string
+  horarioEntrega?: string
+  endereco?: string
+  recebimento?: string
+}
+
+export type StatusFornada = 'Aberta' | 'Encerrada' | 'Cancelada'
+
+export interface Fornada {
+  id: string
+  data: string
+  horarioInicio: string
+  horarioFim: string
+  capacidade: number
+  reservadas: number
+  sabores: string[]
+  especial?: string
+  encerramentoReservas?: string
+  status: StatusFornada
+  observacoes?: string
 }
 
 export type IngredienteCategoria = 'massa' | 'molho' | 'queijo' | 'proteina' | 'embalagem' | 'outros'
@@ -64,6 +84,7 @@ export interface Produto {
   precoVenda: number
   custoInsumos: number
   status: StatusProdutoCadastro
+  imagemUrl?: string
   margemLucro: number
   margemLucroPercentual: number
 }

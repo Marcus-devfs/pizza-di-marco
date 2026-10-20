@@ -23,7 +23,10 @@ export function useCreatePedido() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['pedidos'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['pedidos'] })
+      qc.invalidateQueries({ queryKey: ['fornadas'] })
+    },
   })
 }
 
@@ -39,6 +42,7 @@ export function useUpdatePedido() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['pedidos'] })
       qc.invalidateQueries({ queryKey: ['stats'] })
+      qc.invalidateQueries({ queryKey: ['fornadas'] })
     },
   })
 }
@@ -59,6 +63,7 @@ export function useDeletePedido() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['pedidos'] })
       qc.invalidateQueries({ queryKey: ['stats'] })
+      qc.invalidateQueries({ queryKey: ['fornadas'] })
     },
   })
 }

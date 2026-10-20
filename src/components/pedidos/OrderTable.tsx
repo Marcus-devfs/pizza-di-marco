@@ -56,7 +56,10 @@ export function OrderTable({ pedidos, onEdit, onDelete }: OrderTableProps) {
                   <div className="font-sans text-sm font-medium text-ink">{p.cliente}</div>
                   {p.origem === 'site' && <Badge variant="basil">Site</Badge>}
                 </div>
-                <div className="font-sans text-[10px] text-ink/40 mt-0.5">{p.telefone}</div>
+                <div className="font-sans text-[10px] text-ink/40 mt-0.5">
+                  {p.telefone}
+                  {p.endereco ? ` · ${p.endereco}` : ''}
+                </div>
               </td>
               <td className="py-3 pr-4">
                 <div className="font-sans text-xs text-ink/70 max-w-[200px]">
@@ -72,8 +75,13 @@ export function OrderTable({ pedidos, onEdit, onDelete }: OrderTableProps) {
               </td>
               <td className="py-3 pr-4">
                 <span className="font-sans text-xs text-ink/70">
-                  {p.dataRetirada ? fmtDate(p.dataRetirada) : '—'}
+                  {p.dataRetirada ? fmtDate(`${p.dataRetirada}T12:00:00`) : '—'}
                 </span>
+                {(p.horarioEntrega || p.recebimento) && (
+                  <div className="font-sans text-[10px] text-ink/40 mt-0.5">
+                    {[p.horarioEntrega?.split(' · ').pop(), p.recebimento].filter(Boolean).join(' · ')}
+                  </div>
+                )}
               </td>
               <td className="py-3 pr-4">
                 <span className="font-sans text-xs text-ink/50">{fmtDate(p.data)}</span>

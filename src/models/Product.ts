@@ -10,6 +10,9 @@ export interface IProduct extends Document<string> {
   precoVenda: number
   custoInsumos: number
   status: StatusProduto
+  // Foto exibida no site: URL https ou caminho do site público
+  // (ex: /assets/pizza-margherita.jpg).
+  imagemUrl?: string
   createdAt: Date
   updatedAt: Date
   // virtuals
@@ -37,6 +40,7 @@ const ProductSchema = new Schema<IProduct>(
       min: [0, 'O custo de insumos não pode ser negativo'],
     },
     status: { type: String, enum: ['Ativo', 'Inativo'], default: 'Ativo' },
+    imagemUrl: { type: String, trim: true },
   },
   { timestamps: true },
 )

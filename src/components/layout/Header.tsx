@@ -7,6 +7,7 @@ import { useUIStore } from '@/store/uiStore'
 const PAGE_TITLES: Record<string, string> = {
   '/dashboard': 'Dashboard',
   '/pedidos': 'Pedidos',
+  '/fornadas': 'Fornadas',
   '/sabores': 'Sabores',
   '/producao': 'Produção',
   '/canais': 'Canais de Venda',
